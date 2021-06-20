@@ -6,13 +6,13 @@ const setupRTMP = () => {
         //Prod
         {
           urls: "turn:X.X.X.X:3478",
-          username: "XXXXXX",
+          username: "XXXXXXX",
           credential: "XXX",
         },
         // Staging
         {
           urls: "turn:X.X.X.X:3478",
-          username: "XXXXX",
+          username: "XXXXXXX",
           credential: "XXX",
         },
       ],
@@ -22,34 +22,20 @@ const setupRTMP = () => {
     pc.ontrack = function (event) {
       console.error(event);
       let el = document.getElementById("video-display");
-      // setStreamRef(event.track);
       el.srcObject = event.streams[0];
       el.autoplay = true;
       el.controls = true;
 
-    //   el.onloadeddata = function () {
-    //     setStreaming(true);
-    //   };
-
-    //   const endStream = function () {
-    //     setStreaming(false);
-    //   };
-
-    //   event.track.onended = function () {
-    //     endStream();
-    //   };
     };
 
     pc.addTransceiver('video')
     pc.addTransceiver('audio')
-    //pc.createOffer({ offerToReceiveVideo: true })
     pc.createOffer()
       .then((offer) => {
         pc.setLocalDescription(offer);
-        // let eventID = currentGame.stats.eventId;
 
         return fetch(
-          "http://X.X.X.X:8080/createPeerConnection?eventID=7",
+          "http://X.X.X.X:8080/createPeerConnection",
           {
             method: "post",
             headers: {
