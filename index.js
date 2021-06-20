@@ -47,7 +47,7 @@ const setupRTMP = () => {
         // let eventID = currentGame.stats.eventId;
 
         return fetch(
-          "http://54.171.42.53/createPeerConnection",
+          "http://54.171.42.53/createPeerConnection?eventID=7",
           {
             method: "post",
             headers: {
